@@ -1,8 +1,9 @@
-public class QuickFind implements iUnionFind {
+
+public class QuickUnion implements iUnionFind {
 	private int id[];
 	
 	// Init. union-find data-struct with N objs. (indexed from 0 to N-1)
-	public QuickFind(int N){
+	public QuickUnion(int N){
 		id = new int[N];
 		for(int i = 0; i < N; i++)
 			id[i] = i;
