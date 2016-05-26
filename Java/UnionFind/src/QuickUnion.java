@@ -11,16 +11,22 @@ public class QuickUnion implements iUnionFind {
 	
 	// create a connection between p and q
 	public void union(int p, int q){
-		// make copies of both because their values might change due to loop below
-		int pid = id[p];
-		int qid = id[q];
-		for(int i = 0; i < id.length; i++)
-			id[i] = (id[i] == pid)? qid : pid;
+		int rp = root(p);
+		int rq = root(q);
+		id[rp] = rq;
 	}
 	
 	// check if there is a path between p and q (are they in the same component)
 	public boolean connected(int p, int q){
-		return id[p] == id[q];
+		return root(p) == root(q);
+	}
+	
+	private int root(int v){
+		int i = v;
+		while( i != id[i] )
+			i = id[i];
+		
+		return i;
 	}
 	
 	// returns component identifier of p
