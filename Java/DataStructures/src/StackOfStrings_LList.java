@@ -17,33 +17,42 @@ public class StackOfStrings_LList implements iStackOfStrings {
 	}
 	
 	private StackNode top;
+	private int size_;
 	
 	public StackOfStrings_LList(){
 		top = null;
+		size_ = 0;
 	}
 	
 	@Override
 	public void push(String item) {
-		// TODO Auto-generated method stub
+		StackNode new_item = new StackNode(item, top);
 		
+		if(new_item != null){
+			top = new_item;
+			size_++;
+		}
 	}
 
 	@Override
 	public String pop() {
-		// TODO Auto-generated method stub
-		return null;
+		String top_val = null;
+		if( !isEmpty() ){
+			top_val = top.val;
+			top = top.next;
+			size_--;
+		}
+		return top_val;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return top == null;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size_;
 	}
 
 }
