@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class QueueTester {
 
 	public static void main(String[] args) {
-		iQueueOfStrings s = new QueueOfStrings_LList();
+		iQueueOfStrings s = new QueueOfStrings_Array(4);
 		Scanner line_reader = new Scanner(System.in);
 		
 		while(line_reader.hasNextLine()){
