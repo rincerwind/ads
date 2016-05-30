@@ -14,6 +14,7 @@ public class StackTester {
 			else
 				s.push(line);
 		}
+		line_reader.close();
 	}
 
 }
