@@ -1,3 +1,4 @@
+package myStack;
 
 public class StackOfStrings_Resizing implements iStackOfStrings {
 

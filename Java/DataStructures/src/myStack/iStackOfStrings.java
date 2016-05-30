@@ -1,3 +1,4 @@
+package myStack;
 
 public interface iStackOfStrings {
 	// insert a new item onto stack
