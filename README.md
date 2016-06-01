@@ -15,3 +15,11 @@
   * Resizing Arrays
   * Generics
   * Iterators
+
+### Sorting
+ * Selection sort
+ * Insertion sort
+ * Shell sort
+ * Merge sort
+ * Quick sort
+ * Radix sort
