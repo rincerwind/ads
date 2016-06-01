@@ -17,12 +17,12 @@ public class Stack_Resizing<T> implements IStack<T> {
 		
 		@Override
 		public boolean hasNext() {
-			return current == 0;
+			return current > 0;
 		}
 
 		@Override
 		public T next() {
-			T item = storage[current--];
+			T item = storage[--current];
 			return item;
 		}
 		
