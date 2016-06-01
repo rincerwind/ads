@@ -1,6 +1,6 @@
 package myQueue;
 
-public interface iQueueOfStrings {
+public interface IQueueOfStrings {
 	void enqueue(String item);
 	
 	String dequeue();

@@ -1,6 +1,6 @@
 package myGenerics;
 
-public class Queue_Array<T> implements iQueue<T> {
+public class Queue_Array<T> implements IQueue<T> {
 	private T[] storage;
 	private int head;
 	private int tail;

@@ -1,18 +1,17 @@
-package myStack;
+package myGenerics;
 
-public class StackOfStrings_Resizing implements IStackOfStrings {
-
+public class Stack_Resizing<T> implements IStack<T> {
 	/*
 	 * Useful when I only care a total amount of time it takes to do the
 	 * operations. Not useful if I want to land a plane, where resizing can
 	 * occur in the wrong moment.
 	 * */
 	
-	private String[] storage;
+	private T[] storage;
 	private int top;
 	
-	public StackOfStrings_Resizing(){
-		storage = new String[1];
+	public Stack_Resizing(){
+		storage = (T[])new Object[1];
 		top = 0;
 	}
 	
@@ -21,24 +20,24 @@ public class StackOfStrings_Resizing implements IStackOfStrings {
 	 * but O(1) in the amortized
 	 * */
 	private void resize(int new_len){
-		String[] copy = new String[new_len];
+		T[] copy = (T[])new Object[new_len];
 		for(int i = 0; i < Math.min(new_len, storage.length); i++)
 			copy[i] = storage[i];
 		storage = copy;
 	}
 	
 	@Override
-	public void push(String item) {
+	public void push(T item) {
 		if( top == storage.length )
 			resize(2*storage.length);
 		storage[top++] = item;
 	}
 
 	@Override
-	public String pop() {
+	public T pop() {
 		if(top - 1 < 0)
 			return null;
-		String item = storage[--top];
+		T item = storage[--top];
 		storage[top] = null;
 		if(top > 0 && top == storage.length/4)
 			resize(storage.length/2);
@@ -54,5 +53,4 @@ public class StackOfStrings_Resizing implements IStackOfStrings {
 	public int size() {
 		return top;
 	}
-
 }

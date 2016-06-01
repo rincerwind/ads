@@ -3,12 +3,12 @@ package myQueue;
 import java.util.Scanner;
 
 import myGenerics.Queue_LList;
-import myGenerics.iQueue;
+import myGenerics.IQueue;
 
 public class QueueTester {
 
 	public static void main(String[] args) {
-		iQueue<Integer> s = new Queue_LList<Integer>();
+		IQueue<Integer> s = new Queue_LList<Integer>();
 		Scanner line_reader = new Scanner(System.in);
 		
 		while(line_reader.hasNextLine()){

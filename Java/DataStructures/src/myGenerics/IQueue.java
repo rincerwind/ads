@@ -1,6 +1,6 @@
 package myGenerics;
 
-public interface iQueue<T> {
+public interface IQueue<T> {
 	void enqueue(T item);
 	
 	T dequeue();

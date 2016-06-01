@@ -1,29 +1,28 @@
-package myStack;
+package myGenerics;
 
-public class StackOfStrings_Array implements IStackOfStrings {
-
-	private String[] storage;
+public class Stack_Array<T> implements IStack<T> {
+	private T[] storage;
 	private int top;
 	private int cap;
 	
-	public StackOfStrings_Array(int cap){
-		storage = new String[cap];
+	public Stack_Array(int cap){
+		storage = (T[])new Object[cap];
 		top = 0;
 		this.cap = cap;
 	}
 	
 	@Override
-	public void push(String item) {
+	public void push(T item) {
 		if( top >= cap )
 			return;
 		storage[top++] = item;
 	}
 
 	@Override
-	public String pop() {
+	public T pop() {
 		if(top - 1 < 0)
 			return null;
-		String return_item = storage[--top];
+		T return_item = storage[--top];
 		storage[top] = null; // so GC can reclaim memory
 		return return_item;
 	}
@@ -37,5 +36,4 @@ public class StackOfStrings_Array implements IStackOfStrings {
 	public int size() {
 		return top;
 	}
-
 }

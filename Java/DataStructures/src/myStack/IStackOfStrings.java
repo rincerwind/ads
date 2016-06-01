@@ -1,6 +1,6 @@
 package myStack;
 
-public interface iStackOfStrings {
+public interface IStackOfStrings {
 	// insert a new item onto stack
 	void push(String item);
 	

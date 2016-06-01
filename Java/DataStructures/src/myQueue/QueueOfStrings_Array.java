@@ -1,6 +1,6 @@
 package myQueue;
 
-public class QueueOfStrings_Array implements iQueueOfStrings {
+public class QueueOfStrings_Array implements IQueueOfStrings {
 
 	private String[] storage;
 	private int head;

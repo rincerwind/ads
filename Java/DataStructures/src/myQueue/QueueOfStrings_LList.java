@@ -1,6 +1,6 @@
 package myQueue;
 
-public class QueueOfStrings_LList implements iQueueOfStrings {
+public class QueueOfStrings_LList implements IQueueOfStrings {
 
 	private class QueueNode{
 		String item;

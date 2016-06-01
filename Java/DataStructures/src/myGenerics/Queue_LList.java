@@ -1,6 +1,6 @@
 package myGenerics;
 
-public class Queue_LList<T> implements iQueue<T> {
+public class Queue_LList<T> implements IQueue<T> {
 	private class QueueNode{
 		T item;
 		QueueNode next;
