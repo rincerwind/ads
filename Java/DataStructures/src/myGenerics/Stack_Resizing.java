@@ -1,5 +1,7 @@
 package myGenerics;
 
+import java.util.Iterator;
+
 public class Stack_Resizing<T> implements IStack<T> {
 	/*
 	 * Useful when I only care a total amount of time it takes to do the
@@ -9,6 +11,22 @@ public class Stack_Resizing<T> implements IStack<T> {
 	
 	private T[] storage;
 	private int top;
+	
+	private class ArrayIterator implements Iterator<T>{
+		private int current = top;
+		
+		@Override
+		public boolean hasNext() {
+			return current == 0;
+		}
+
+		@Override
+		public T next() {
+			T item = storage[current--];
+			return item;
+		}
+		
+	}
 	
 	public Stack_Resizing(){
 		storage = (T[])new Object[1];
@@ -52,5 +70,10 @@ public class Stack_Resizing<T> implements IStack<T> {
 	@Override
 	public int size() {
 		return top;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new ArrayIterator();
 	}
 }

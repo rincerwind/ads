@@ -1,5 +1,7 @@
 package myGenerics;
 
+import java.util.Iterator;
+
 public interface IStack<T> {
 	// insert a new item onto stack
 	void push(T item);
@@ -12,4 +14,7 @@ public interface IStack<T> {
 	
 	// get the current number of items in the stack
 	int size();
+	
+	// returns an iterator for the particular implementation
+	public Iterator<T> iterator();
 }

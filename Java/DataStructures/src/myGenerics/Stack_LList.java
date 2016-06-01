@@ -1,6 +1,8 @@
 package myGenerics;
 
-public class Stack_LList<T> implements IStack<T> {
+import java.util.Iterator;
+
+public class Stack_LList<T> implements IStack<T>, Iterable<T> {
 	private class StackNode{
 		T val;
 		StackNode next;
@@ -9,6 +11,23 @@ public class Stack_LList<T> implements IStack<T> {
 			this.val = item;
 			this.next = next;
 		}
+	}
+	
+	private class ListIterator implements Iterator<T>{
+		private StackNode current = top;
+		
+		@Override
+		public boolean hasNext() {
+			return current != null;
+		}
+
+		@Override
+		public T next() {
+			T item = current.val;
+			current = current.next;
+			return item;
+		}
+		
 	}
 	
 	private StackNode top;
@@ -48,5 +67,10 @@ public class Stack_LList<T> implements IStack<T> {
 	@Override
 	public int size() {
 		return size_;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new ListIterator();
 	}
 }
