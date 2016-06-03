@@ -16,7 +16,7 @@ public class SortTester {
 			System.out.print("" + a[i] + " ");
 		System.out.println();
 		
-		Selection.sort(a);
+		Insertion.sort(a);
 		
 		for(int i = 0; i < N; i++)
 			System.out.print("" + a[i] + " ");
