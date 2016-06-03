@@ -10,13 +10,7 @@ public class Selection {
 					min = j;
 			
 			if(min != i)
-				swap(a, min, i);
+				Utils.swap(a, min, i);
 		}
-	}
-	
-	private static void swap(Comparable[] a, int i, int j){
-		Comparable temp = a[i];
-		a[i] = a[j];
-		a[j] = temp;
 	}
 }

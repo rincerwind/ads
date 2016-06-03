@@ -14,6 +14,13 @@ public class Shell {
 	 * complexity should be N^{3/2} for h=3*h+1 rule (in practice is much less).
 	 * Nobody has been able to prove how many comparisons it does, by finding
 	 * an accurate model but it seems to be some multiple of 2.5*N*Log(N).
+	 * 
+	 * 
+	 * Applications:
+	 * 
+	 * 1. Useful for medium size arrays
+	 * 2. In embedded systems because simple but powerful
+	 * 3. Hardware sort prototype
 	 * */
 	
 	public static void sort(Comparable[] a){

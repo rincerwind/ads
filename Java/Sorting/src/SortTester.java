@@ -16,7 +16,7 @@ public class SortTester {
 			System.out.print("" + a[i] + " ");
 		System.out.println();
 		
-		Shell.sort(a);
+		Merge.sort(a);
 		
 		for(int i = 0; i < N; i++)
 			System.out.print("" + a[i] + " ");
