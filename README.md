@@ -22,4 +22,5 @@
  * Shell sort
  * Merge sort
  * Quick sort
+   * Quick-Select 
  * Radix sort
