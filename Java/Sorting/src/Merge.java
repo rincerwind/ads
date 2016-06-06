@@ -8,8 +8,9 @@ public class Merge {
 		int r2 = r;
 		
 		// this doesn't work for some reason???
-		//if(a[l2].compareTo(a[r1]) > 0)
-		//	return;
+		/*if(a[l2].compareTo(a[r1]) > 0){
+			aux = a;
+		}*/
 		
 		int pleft = l1;
 		int pright = l2;
