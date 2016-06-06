@@ -32,4 +32,22 @@ public class Quick {
 		// good idea to shuffle the array at this point
 		qsort(a, 0, a.length - 1);
 	}
+	
+	// finds the k-th smallest element
+	public static Comparable select(Comparable[] a, int k, int l, int r){
+		int i = l;
+		int j = r;
+		
+		while( i < j ){
+			int t = partition(a, i, j);
+			if( t < k )
+				i = t + 1;
+			else if(t > k)
+				j = t - 1;
+			else
+				return a[k];
+		}
+		
+		return a[k];
+	}
 }
