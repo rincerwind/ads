@@ -12,6 +12,7 @@
   * Queue
     * Linked-List
     * Circular Array
+  * Priority Queues
   * Resizing Arrays
   * Generics
   * Iterators
