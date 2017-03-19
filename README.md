@@ -25,3 +25,6 @@
  * Quick sort
    * Quick-Select 
  * Radix sort
+
+### Crypto
+ * Shamir's Secret Sharing
