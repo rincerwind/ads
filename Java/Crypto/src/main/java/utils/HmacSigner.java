@@ -13,7 +13,7 @@ public class HmacSigner {
     public static final String DEFAULT_ENCODING = "UTF-8";
     public static final String HMAC_SHA256 = "HmacSHA256";
     public static final String HMAC_SHA1 = "HmacSHA1";
-    private static final String HMAC_SHA256_DELIMITER = ".";
+    private static final String HMAC_SHA256_DELIMITER = "\\.";
     private static final String HMAC_SHA1_DELIMITER = "|";
 
     private String algorithm;
@@ -51,7 +51,7 @@ public class HmacSigner {
     public String verify(String key, String signedPayload) throws UnsupportedEncodingException, InvalidKeyException,
             NoSuchAlgorithmException {
 
-        if (HMAC_SHA256.equals(key)) {
+        if (HMAC_SHA256.equals(algorithm)) {
             return verifySHA256(key, signedPayload);
         } else {
             // TODO: Implement
@@ -63,7 +63,7 @@ public class HmacSigner {
     private String verifySHA256(String key, String signedPayload) throws UnsupportedEncodingException,
             InvalidKeyException, NoSuchAlgorithmException {
         String[] splitSignedData = signedPayload.split(HMAC_SHA256_DELIMITER);
-        if (splitSignedData.length < 2) {
+        if (splitSignedData.length != 2) {
             return null;
         }
         String decodedSignature = new String(Base64.decodeBase64(splitSignedData[0].getBytes(DEFAULT_ENCODING)),
