@@ -11,6 +11,7 @@ import java.security.SecureRandom;
 
 public class ShamirSecret {
 
+    private static final int CERTAINTY = 32;
     private HmacSigner hmacSigner;
 
     public ShamirSecret() {
@@ -25,15 +26,17 @@ public class ShamirSecret {
         byte[] secretBytes = encryptedSecret.getBytes(HmacSigner.DEFAULT_ENCODING);*/
 
         BigInteger[] coefs = {new BigInteger("1234"), new BigInteger("166"), new BigInteger("94")};
+        BigInteger randomPrime = generateRandomPrimer(coefs[0].bitLength());
         SecretShare[] secretShares = new SecretShare[6];
 
         // Compute shares
         for (int i = 0; i < shares; i++) {
             BigInteger secretSum = coefs[0];
 
-            for (int coefInd = 1; coefInd < threshold; coefInd++) {
-                final BigInteger xCoord = BigInteger.valueOf(i+1).pow(coefInd);
-                secretSum = secretSum.add(coefs[coefInd].multiply(xCoord));
+            for (int exp = 1; exp < threshold; exp++) {
+                final BigInteger xCoord = BigInteger.valueOf(i+1).modPow(BigInteger.valueOf(exp), randomPrime);
+                final BigInteger tempProd = coefs[exp].multiply(xCoord).mod(randomPrime);
+                secretSum = secretSum.add(tempProd).mod(randomPrime);
             }
             secretShares[i] = new SecretShare(i+1, secretSum);
             System.out.println(String.format("Share %d: %s", i+1, secretSum.toString()));
@@ -48,14 +51,15 @@ public class ShamirSecret {
 
             for ( int xInd = 0; xInd < threshold; xInd++ ) {
                 if ( i != xInd ) {
-                    BigInteger xIndCoord = new BigInteger("" + secretShares[xInd].getxCoord());
-                    BigInteger xICoord = new BigInteger("" + secretShares[i].getxCoord());
-                    num = num.multiply(xIndCoord);
-                    denom = denom.multiply(xIndCoord.subtract(xICoord));
+                    BigInteger xIndCoord = BigInteger.valueOf(secretShares[xInd].getxCoord());
+                    BigInteger xICoord = BigInteger.valueOf(secretShares[i].getxCoord());
+                    num = num.multiply(xIndCoord).mod(randomPrime);
+                    denom = denom.multiply(xIndCoord.subtract(xICoord)).mod(randomPrime);
                 }
             }
 
-            computedSecret = computedSecret.add(yCoord.divide(denom).multiply(num));
+            final BigInteger tempSum = yCoord.multiply(num).multiply(denom.modInverse(randomPrime));
+            computedSecret = computedSecret.add(randomPrime).add(tempSum).mod(randomPrime);
         }
         System.out.print("Computed secret: " + computedSecret);
 
@@ -64,6 +68,11 @@ public class ShamirSecret {
 
     private byte[] computeShare() {
         return null;
+    }
+
+    private BigInteger generateRandomPrimer(int secretBitLen) {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(secretBitLen + 1, CERTAINTY, random);
     }
 
     private String generatePublicKey() throws UnsupportedEncodingException {
